@@ -14,9 +14,9 @@ const NavBar = () => {
             <Link href="/"><GiAlienBug className='w-7' />  </Link>
             <ul className='flex space-x-6'>
                 {links.map(link => <Link key={link.href} href={link.href} className={classNames({
-                    "text-lime-50": link.href === currentPath,
-                    "text-lime-200": link.href !== currentPath,
-                    "hover:text-indigo-200 transition-colors": true
+                    "text-neutral-950": link.href === currentPath,
+                    "text-neutral-400": link.href !== currentPath,
+                    "hover:text-indigo-600 transition-colors": true
                 })} > {link.label}</Link>)}
 
             </ul>

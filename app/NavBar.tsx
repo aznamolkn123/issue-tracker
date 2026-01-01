@@ -2,8 +2,7 @@
 import Link from 'next/link';
 import { GiAlienBug } from "react-icons/gi";
 import { usePathname } from 'next/navigation';
-import classNames
-    from 'classnames';
+import classNames from 'classnames';
 const NavBar = () => {
     const currentPath = usePathname();
     const links = [

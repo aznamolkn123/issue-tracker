@@ -1,12 +1,13 @@
 import "@radix-ui/themes/styles.css";
+import "./theme-config.css";
+import "./globals.css";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import NavBar from "./NavBar";
-import { Theme } from "@radix-ui/themes";
-import "./globals.css";
+import { Theme, ThemePanel } from "@radix-ui/themes";
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
@@ -26,13 +27,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={geistSans.variable}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Theme>
+        <Theme accentColor="teal">
           <NavBar />
           <main className="ml-5"> {children}</main>
+          <ThemePanel />
         </Theme>
       </body>
     </html>

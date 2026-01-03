@@ -34,7 +34,7 @@ export default function RootLayout({
         <Theme accentColor="teal">
           <NavBar />
           <main className="ml-5"> {children}</main>
-          <ThemePanel />
+
         </Theme>
       </body>
     </html>

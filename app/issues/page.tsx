@@ -6,7 +6,6 @@ import IssueTable from "./new/IssueTable";
 const IssuesPage = async () => {
     return (
         <div >
-
             <IssueActions />
             <Suspense fallback={<p>Loading Issues...</p>}>
                 <IssueTable />

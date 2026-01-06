@@ -1,4 +1,5 @@
-import { Box, Card, Flex, Skeleton, } from "@radix-ui/themes";
+import Skeleton from "@/app/components/Skeleton";
+import { Box, Card, Flex, } from "@radix-ui/themes";
 
 export default function LoadingIssueDetailPage() {
     return (
@@ -9,8 +10,7 @@ export default function LoadingIssueDetailPage() {
                 <Skeleton width="100px" />
             </Flex>
             <Card className="prose mt-4">
-
-                <Skeleton mt="4" height="200px" />
+                <Skeleton height="200px" />
             </Card>
         </Box>
     );

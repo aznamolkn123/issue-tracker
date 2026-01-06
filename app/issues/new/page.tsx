@@ -9,8 +9,7 @@ import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { createIssueSchema } from "@/app/validationScemas";
 import z from "zod"
-import ErrorMessege from "@/app/components/ErrorMessege";
-import Spinner from "@/app/components/Spinner";
+import { ErrorMessege, Spinner } from "@/app/components";
 type IssueForm = z.infer<typeof createIssueSchema>
 const NewIssuePage = () => {
     const router = useRouter()

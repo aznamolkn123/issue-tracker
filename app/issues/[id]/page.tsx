@@ -1,4 +1,4 @@
-import IssueStatusBadge from '@/app/components/IssueStatusBadge'
+import { IssueStatusBadge } from '../../components'
 import { Card, Flex, Heading } from '@radix-ui/themes'
 import { notFound } from 'next/navigation'
 import ReactMarkdown from 'react-markdown'

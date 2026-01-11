@@ -3,8 +3,7 @@ import IssueForm from '../../_components/IssueForm'
 import { notFound } from 'next/navigation'
 
 interface Props {
-    params:
-    Promise<{ id: string }>
+    params: Promise<{ id: string }>
 
 }
 const EditIssuePage = async ({ params }: Props) => {

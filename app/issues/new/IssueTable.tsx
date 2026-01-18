@@ -1,6 +1,6 @@
 import React from 'react'
 import { Table, } from "@radix-ui/themes";
-import { prisma } from "@/app/lib/prisma";
+import { prisma } from "../../lib/prisma";
 import Link from "@/app/components/Link";
 import IssueStatusBadge from "../../components/IssueStatusBadge";
 const IssueTable = async () => {

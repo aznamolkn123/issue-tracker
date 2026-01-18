@@ -1,12 +1,17 @@
-import { PrismaClient } from "../generated/prisma/client";
-import { PrismaMariaDb } from "@prisma/adapter-mariadb";
+import { PrismaClient } from '../generated/prisma/client'
+import { PrismaMariaDb } from '@prisma/adapter-mariadb'
 
-const globalForPrisma = global as unknown as {
-    prisma: PrismaClient | undefined;
-};
+const prismaClientSingleton = () => {
+    const adapter = new PrismaMariaDb(process.env.DATABASE_URL!)
+    return new PrismaClient({ adapter })
+}
 
-// Use the adapter
-const adapter = new PrismaMariaDb({});
-export const prisma = globalForPrisma.prisma ?? new PrismaClient({ adapter } as any);
+declare global {
+    var prisma: undefined | ReturnType<typeof prismaClientSingleton>
+}
 
-if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
+const prisma = globalThis.prisma ?? prismaClientSingleton()
+
+export { prisma }
+
+if (process.env.NODE_ENV !== 'production') globalThis.prisma = prisma

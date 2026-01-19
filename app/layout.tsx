@@ -34,7 +34,8 @@ export default function RootLayout({
         <Theme accentColor="teal">
           <NavBar />
           <main className="ml-5">
-            <Container>{children}</Container></main>
+            <Container>{children}</Container>
+          </main>
 
         </Theme>
       </body>

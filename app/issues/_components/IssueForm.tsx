@@ -9,8 +9,12 @@ import "easymde/dist/easymde.min.css";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import SimpleMDE from "react-simplemde-editor";
 import z from "zod";
+import dynamic from 'next/dynamic';
+
+const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
+    ssr: false
+});
 type IssueFormData = z.infer<typeof IssueSchema>
 const IssueForm = ({ issue }: { issue?: Issue }) => {
     const router = useRouter()
@@ -30,7 +34,7 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
                 await axios.post('/api/issues', data)
             }
 
-            router.push('/issues')
+            router.push('/issues/list')
             router.refresh();
 
         } catch (error) {

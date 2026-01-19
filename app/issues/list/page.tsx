@@ -1,7 +1,7 @@
 
 import { Suspense } from 'react';
 import IssueActions from "./IssueActions";
-import IssueTable from "./new/IssueTable";
+import IssueTable from "../new/IssueTable";
 
 const IssuesPage = async () => {
     return (

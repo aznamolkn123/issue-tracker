@@ -1,17 +1,22 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from '@prisma/client'
 import { PrismaMariaDb } from '@prisma/adapter-mariadb'
 
 const prismaClientSingleton = () => {
-    const adapter = new PrismaMariaDb(process.env.DATABASE_URL!)
+    // 1. Create the adapter with the connection string
+    const databaseUrl = process.env.DATABASE_URL
+    if (!databaseUrl) {
+        throw new Error('DATABASE_URL environment variable is not set')
+    }
+    const adapter = new PrismaMariaDb(databaseUrl)
+
+    // 2. Pass the adapter to the Prisma Client
     return new PrismaClient({ adapter })
 }
 
 declare global {
-    var prisma: undefined | ReturnType<typeof prismaClientSingleton>
+    var prismaGlobal: undefined | ReturnType<typeof prismaClientSingleton>
 }
 
-const prisma = globalThis.prisma ?? prismaClientSingleton()
+export const prisma = globalThis.prismaGlobal ?? prismaClientSingleton()
 
-export { prisma }
-
-if (process.env.NODE_ENV !== 'production') globalThis.prisma = prisma
+if (process.env.NODE_ENV !== 'production') globalThis.prismaGlobal = prisma

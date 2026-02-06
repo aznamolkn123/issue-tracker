@@ -39,10 +39,11 @@ const NavBar = () => {
                                     <button className="IconButton" aria-label="User options">
                                         <Avatar
                                             src={session.user!.image!}
-                                            fallback="A"
+                                            fallback="?"
                                             size="2"
                                             radius="full"
                                             className='cursor-pointer'
+                                            referrerPolicy='no-referrer'
                                         />
                                     </button>
                                 </DropdownMenu.Trigger>

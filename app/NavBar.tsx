@@ -4,7 +4,7 @@ import { GiAlienBug } from "react-icons/gi";
 import { usePathname } from 'next/navigation';
 import classNames from 'classnames';
 import { useSession } from 'next-auth/react';
-import { Box, Container, Flex } from '@radix-ui/themes';
+import { Avatar, Box, Container, DropdownMenu, Flex, Text } from '@radix-ui/themes';
 const NavBar = () => {
     const currentPath = usePathname();
     const links = [
@@ -33,7 +33,29 @@ const NavBar = () => {
                     </Flex>
                     <Box>
 
-                        {status === "authenticated" && <Link href="/api/auth/signout">Log Out </Link>}
+                        {status === "authenticated" &&
+                            < DropdownMenu.Root >
+                                <DropdownMenu.Trigger>
+                                    <button className="IconButton" aria-label="User options">
+                                        <Avatar
+                                            src={session.user!.image!}
+                                            fallback="A"
+                                            size="2"
+                                            radius="full"
+                                            className='cursor-pointer'
+                                        />
+                                    </button>
+                                </DropdownMenu.Trigger>
+                                <DropdownMenu.Content>
+                                    <Text size="2">
+                                        <DropdownMenu.Label>{session.user!.email}</DropdownMenu.Label>
+                                        <DropdownMenu.Item><Link href="/api/auth/signout">Log Out </Link></DropdownMenu.Item>
+                                    </Text>
+
+                                </DropdownMenu.Content>
+                            </DropdownMenu.Root>
+
+                        }
                         {status === "unauthenticated" && <Link href="/api/auth/signin">Log In </Link>}
 
                     </Box>

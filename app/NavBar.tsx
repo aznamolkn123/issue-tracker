@@ -73,7 +73,6 @@ const AuthStatus = () => {
                     <Text size="2">
                         <DropdownMenu.Item><Link href="/api/auth/signout">Log Out </Link></DropdownMenu.Item>
                     </Text>
-
                 </DropdownMenu.Content>
             </DropdownMenu.Root>
 

@@ -3,9 +3,10 @@ import { Suspense } from 'react';
 import IssueActions from "./IssueActions";
 import IssueTable from "../new/IssueTable";
 import { Status } from '@/app/generated/prisma/edge';
+import { Issue } from '@prisma/client';
 
 interface Props {
-    searchParams: Promise<{ status: Status }>
+    searchParams: Promise<{ status: Status, orderBy: keyof Issue }>
 }
 const IssuesPage = async ({ searchParams }: Props) => {
 

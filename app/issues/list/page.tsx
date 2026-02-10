@@ -2,13 +2,19 @@
 import { Suspense } from 'react';
 import IssueActions from "./IssueActions";
 import IssueTable from "../new/IssueTable";
+import { Status } from '@/app/generated/prisma/edge';
 
-const IssuesPage = async () => {
+interface Props {
+    searchParams: Promise<{ status: Status }>
+}
+const IssuesPage = async ({ searchParams }: Props) => {
+
+
     return (
         <div >
             <IssueActions />
             <Suspense fallback={<p>Loading Issues...</p>}>
-                <IssueTable />
+                <IssueTable searchParams={searchParams} />
             </Suspense>
         </div>
     )

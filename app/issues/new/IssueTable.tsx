@@ -10,14 +10,6 @@ import { ArrowUpIcon } from '@radix-ui/react-icons';
 
 const IssueTable = async ({ searchParams }: { searchParams: Promise<{ status: Status, orderBy: keyof Issue }> }) => {
     const params = await searchParams;
-    const statuses = Object.values(Status);
-    const status = statuses.includes(params.status) ? params.status : undefined;
-    const issues = await prisma.issue.findMany(
-        {
-            where: { status },
-        }
-    );
-
     const columns: {
         label: string;
         value: keyof Issue;
@@ -26,7 +18,20 @@ const IssueTable = async ({ searchParams }: { searchParams: Promise<{ status: St
             { label: "Issue", value: "title" },
             { label: "Status", value: "status", classname: "hidden md:table-cell" },
             { label: "Created At", value: "createdAt", classname: "hidden md:table-cell" }
-        ]
+        ];
+    const statuses = Object.values(Status);
+    const status = statuses.includes(params.status) ? params.status : undefined;
+    const orderBy = columns.map((column) => (column.value))
+        .includes(params.orderBy) ? { [params.orderBy]: "asc" } : undefined;
+    const issues = await prisma.issue.findMany(
+        {
+            where: { status },
+            orderBy: orderBy
+        },
+
+    );
+
+
     return (
         <div>
             <Table.Root variant="surface" className="max-w-3xl" >

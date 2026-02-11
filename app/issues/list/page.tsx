@@ -1,14 +1,14 @@
 
-import { Suspense } from 'react';
-import IssueActions from "./IssueActions";
+import Link from "@/app/components/Link";
 import { Status } from '@/app/generated/prisma/edge';
+import { prisma } from '@/app/lib/prisma';
 import { Issue } from '@prisma/client';
 import { ArrowUpIcon } from '@radix-ui/react-icons';
 import { Table, } from "@radix-ui/themes";
-import Link from "@/app/components/Link";
 import NextLink from "next/link";
+import { Suspense } from 'react';
 import IssueStatusBadge from "../../components/IssueStatusBadge";
-import { prisma } from '@/app/lib/prisma';
+import IssueActions from "./IssueActions";
 interface Props {
     searchParams: Promise<{ status: Status, orderBy: keyof Issue }>
 }

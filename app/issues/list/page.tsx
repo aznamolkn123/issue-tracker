@@ -9,8 +9,9 @@ import NextLink from "next/link";
 import { Suspense } from 'react';
 import IssueStatusBadge from "../../components/IssueStatusBadge";
 import IssueActions from "./IssueActions";
+import Pagination from "@/app/components/Pagination";
 interface Props {
-    searchParams: Promise<{ status: Status, orderBy: keyof Issue }>
+    searchParams: Promise<{ status: Status, orderBy: keyof Issue, page: string }>
 }
 const IssuesPage = async ({ searchParams }: Props) => {
     const param = await searchParams;
@@ -25,15 +26,23 @@ const IssuesPage = async ({ searchParams }: Props) => {
         ];
     const statuses = Object.values(Status);
     const status = statuses.includes(param.status) ? param.status : undefined;
+    const where = { status }
     const orderBy = columns.map((column) => (column.value))
         .includes(param.orderBy) ? { [param.orderBy]: "asc" } : undefined;
+
+    const page = parseInt(param.page) || 1;
+    const pageSize = 10;
+
     const issues = await prisma.issue.findMany(
         {
-            where: { status },
-            orderBy: orderBy
+            where: where,
+            orderBy: orderBy,
+            skip: (page - 1) * pageSize,
+            take: pageSize
         },
 
     );
+    const totalIssues = await prisma.issue.count({ where: where })
 
     return (
         <div >
@@ -68,6 +77,7 @@ const IssuesPage = async ({ searchParams }: Props) => {
                         ))}
                     </Table.Body>
                 </Table.Root>
+                <Pagination itemCount={totalIssues} pageSize={pageSize} currentPage={page} />
             </Suspense >
         </div>
 

@@ -3,6 +3,7 @@ import IssueChart from "./IssueChart";
 import IssueSummery from "./IssueSummery";
 import LatestIssues from "./LatestIssues";
 import { prisma } from "./lib/prisma";
+import { Metadata } from "next";
 
 
 export default async function Home() {
@@ -26,4 +27,9 @@ export default async function Home() {
 
     </Grid>
   )
+}
+
+export const metadata: Metadata = {
+  title: "Issue Tracker - Dashboard",
+  description: "View a summery of project issue"
 }

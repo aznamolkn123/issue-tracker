@@ -1,3 +1,4 @@
+import IssueChart from "./IssueChart";
 import IssueSummery from "./IssueSummery";
 import LatestIssues from "./LatestIssues";
 import { prisma } from "./lib/prisma";
@@ -12,5 +13,5 @@ export default async function Home() {
   const closed = await prisma.issue.count({
     where: { status: "CLOSED" },
   });
-  return <IssueSummery open={open} In_Progress={InProgress} closed={closed} />;
+  return <IssueChart open={open} In_Progress={InProgress} closed={closed} />;
 }

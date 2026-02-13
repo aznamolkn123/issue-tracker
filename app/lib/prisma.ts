@@ -10,7 +10,9 @@ const prismaClientSingleton = () => {
     const adapter = new PrismaMariaDb(databaseUrl)
 
     // 2. Pass the adapter to the Prisma Client
-    return new PrismaClient({ adapter })
+    return new PrismaClient({
+        adapter,
+    })
 }
 
 declare global {

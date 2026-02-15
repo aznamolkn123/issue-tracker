@@ -1,5 +1,5 @@
 import Link from "@/app/components/Link";
-import { Issue, Status } from "@/app/generated/prisma/edge";
+import { Issue, Status } from "@prisma/client";
 import { ArrowUpIcon } from "@radix-ui/react-icons";
 import { Table } from "@radix-ui/themes";
 import NextLink from "next/link";

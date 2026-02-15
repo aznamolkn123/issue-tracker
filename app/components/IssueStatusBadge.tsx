@@ -1,5 +1,5 @@
 import { Badge } from "@radix-ui/themes"
-import { Status } from "../generated/prisma"
+import { Status } from "@prisma/client"
 
 const statusMap: Record<
     Status,

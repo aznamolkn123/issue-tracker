@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { Flex, Grid } from "@radix-ui/themes";
 import IssueChart from "./IssueChart";
 import IssueSummery from "./IssueSummery";
